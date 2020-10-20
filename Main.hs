@@ -48,7 +48,7 @@ takeInput :: IO Input
 takeInput = fmap parseArguments getArgs
 
 importCSV :: Input -> IO [Record]
-importCSV i = fmap (init.(drop 2).fromRight') $ parseCSVFromFile $ fileLocation i
+importCSV = fmap (init . drop 2 . fromRight') . parseCSVFromFile . fileLocation
 
 --Converts Strings into Doubles that might be in scientific notation
 
@@ -67,7 +67,7 @@ positionAndForce :: [Record] -> [(Elongation, Force)]
 positionAndForce = (map (\x -> (fromSci.(!!2) $ x , fromSci.(!!3) $ x))).(filter')
 
 filter' :: [[String]] -> [[String]]
-filter' = filter $ liftM2 (||) ((>0).fromSci.(!!3)) ((>0).fromSci.(!!2))
+filter' = filter $ liftM2 (&&) ((>0).fromSci.(!!3)) ((>0).fromSci.(!!2))
 
 --Given the diamater of the test sample, the pre-load force and a data point it produces an engineering stress value
 type Stress = Double
@@ -79,8 +79,7 @@ engineeringStress i fe = (4*(snd fe + preload i))/(pi*(diameter i)^2)
 type Strain = Double
 
 engineeringStrain :: Input -> (Elongation, Force) -> Strain
-engineeringStrain i lef = (fst lef)/(gaugeLength i)
-
+engineeringStrain = flip ((/) . fst) . gaugeLength
 
 stressStrainSeries :: Input -> [(Elongation, Force)] -> [(Strain,Stress)]
 stressStrainSeries i = map (\x -> (engineeringStrain i x, engineeringStress i x))
