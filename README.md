@@ -4,7 +4,7 @@ I've only tested this code on Linux, but you can compile it from the source for 
 
 Tuple Transpose:
 
-I needed a way to transpose the elements of 2 tuples in an arrayy for calculating Riemann sums.
+I needed a way to transpose the elements of 2 tuples in an array for calculating Riemann sums.
 
 Main:
 
@@ -12,12 +12,10 @@ Main is the source file for actually calculating the data needed for the tensile
 
 Example usage: ./Main 100 0.033 0.0031 0.1 Lab/Data/BrassData.csv
 
-Flags:
--d -- tells it to use the default Pasco values
-  ./main -d Lab/Data/BrassData.csv
--m -- provide a .txt file of file locations to do multiple analysies at once
-  ./main -d -m locations.txt
--s -- tells it to search all sub directories and perform multiple analysies on all csv files that are found (automatically uses default values).
-  ./Main -s
+| -d | use default values, can be combined with -m                              | ./Main -d data.csv                                    |   |   |
+|----|--------------------------------------------------------------------------|-------------------------------------------------------|---|---|
+| -m | include a CSV with material data and file locations                      | ./Main -m locations.csv or ./Main -d -m locations.csv |   |   |
+| -s | search sub-directories for CSV files (automatically uses default values) | ./Main -s                                             |   |   |
+|    |                                                                          |                                                       |   |   |
 
 The slope deviation calculates the perecnt difference in the slope change from the slope of the initial data point, this value is needed to calculate the linear portion of the data.
