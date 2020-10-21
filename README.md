@@ -16,7 +16,6 @@ Example usage: ./Main 100 0.033 0.0031 0.1 Lab/Data/BrassData.csv
 |----|--------------------------------------------------------------------------|-------------------------------------------------------|
 | -m | include a CSV with material data and file locations                      | ./Main -m locations.csv or ./Main -d -m locations.csv |
 | -s | search sub-directories for CSV files (automatically uses default values) | ./Main -s                                             |
-|    |                                                                          |                                                       |
 | -d | use default values, can be combined with -m                              | ./Main -d data.csv                                    |
 
 The slope deviation calculates the perecnt difference in the slope change from the slope of the initial data point, this value is needed to calculate the linear portion of the data.
