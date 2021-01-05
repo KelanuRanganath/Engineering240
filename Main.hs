@@ -87,6 +87,8 @@ stressStrainSeries i = map (\x -> (engineeringStrain i x, engineeringStress i x)
 --Given a series of data points this function calculates the area underneath it using LH riemman sums
 type Area = Double
 
+--If I'm allowed to have a favorite function area is it, it combines all the coolest functions I know as well as my own function; calculating the area under a curve in one line, it's pretty fucking awesome.
+
 area :: [(Double, Double)] -> Area
 area = sum.map (product.map (abs.uncurry (-))).splitEvery 2.transpose.liftM2 interleave init tail
 
